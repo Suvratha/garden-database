@@ -1,7 +1,14 @@
 const create = function (plant) {
-    localStorage.setItem(
-        plant.name, JSON.stringify(plant)
-    );
+    var values = JSON.parse(localStorage.getItem("plantsTable"));
+    if (!values) {
+        values = [];
+    }
+    values.push(plant);
+    localStorage.setItem("plantsTable", JSON.stringify(values));
 };
 
-export default { create }
+const read = function () {
+    return JSON.parse(localStorage.getItem("plantsTable")) || [];
+}
+
+export default { create, read }

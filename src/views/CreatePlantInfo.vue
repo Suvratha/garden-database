@@ -45,7 +45,7 @@
 import Service from "Service";
 
 export default {
-  name: "GardenList",
+  name: "CreatePlantInfo",
   data: () => {
     return {
       plant: {},

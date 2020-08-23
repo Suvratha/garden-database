@@ -1,15 +1,34 @@
 <template>
-  <div class="GardenList">
-    Hallo
-  </div>
+  <v-data-table :headers="headers" :items="plants" :items-per-page="10" class="elevation-1"></v-data-table>
 </template>
 
 <script>
+import Service from "Service";
 
 export default {
-  name: 'GardenList',
-  components: {
-    
-  }
-}
+  name: "GardenList",
+  data: () => {
+    return {
+      headers: [
+        {
+          text: "Plants",
+          align: "start",
+          sortable: false,
+          value: "name",
+        },
+        { text: "Name", value: "name" },
+        { text: "Description", value: "description" },
+        { text: "Water", value: "water" },
+        { text: "Fertilizer", value: "fertilizer" },
+        { text: "Insecticides", value: "insecticides" },
+        { text: "SunLight", value: "sunlight" },
+      ],
+      plants: [],
+    };
+  },
+  created: function () {
+    this.plants = Service.read();
+
+  },
+};
 </script>

@@ -42,20 +42,21 @@
 </template>
 
 <script>
+import Service from "Service";
+
 export default {
   name: "GardenList",
-  data: ()=>{
-      return {
-          plant:{}
-      }
+  data: () => {
+    return {
+      plant: {},
+    };
   },
-  methods:{
-      submit:function(){
-          localStorage.setItem(
-              this.plant.name, JSON.stringify(this.plant)
-          )
-          this.plant={}
-      }
-  }
+  methods: {
+    submit: function () {
+      Service.create(this.plant);
+      console.log("Successfully created");
+      this.plant = {};
+    },
+  },
 };
 </script>

@@ -16,7 +16,6 @@ export default {
           sortable: false,
           value: "name",
         },
-        { text: "Name", value: "name" },
         { text: "Description", value: "description" },
         { text: "Water", value: "water" },
         { text: "Fertilizer", value: "fertilizer" },

@@ -18,9 +18,12 @@ export default {
         },
         { text: "Description", value: "description" },
         { text: "Water", value: "water" },
-        { text: "Fertilizer", value: "fertilizer" },
-        { text: "Insecticides", value: "insecticides" },
         { text: "SunLight", value: "sunlight" },
+        { text: "Fertilizer", value: "fertilizer" },
+        { text: "Fertilizing Period", value: "fertilizerperiod" },
+        { text: "Insecticides", value: "insecticides" },
+        
+        { text: "Notes", value: "notes" },
       ],
       plants: [],
     };

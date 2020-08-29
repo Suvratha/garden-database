@@ -78,6 +78,7 @@
         <v-btn>Cancel</v-btn>
       </v-col>
     </v-row>
+    <v-snackbar v-model="snackbar" :bottom="true" color="success">Success!!</v-snackbar>
   </v-container>
 </template>
 <script>
@@ -115,12 +116,14 @@ export default {
       ],
       insecticides: ["neem oil"],
       fertilizerperiod: ["Weekly", "Once in 15 days", "Monthly"],
+      snackbar: false,
     };
   },
   methods: {
     submit: function () {
       Service.create(this.plant);
       console.log("Successfully created");
+      this.snackbar = true;
       this.plant = {};
     },
   },

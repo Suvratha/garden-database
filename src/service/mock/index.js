@@ -8,7 +8,10 @@ const create = function (plant) {
 };
 
 const read = function () {
-    return JSON.parse(localStorage.getItem("plantsTable")) || [];
+    const executor = function(resolve){
+        resolve(JSON.parse(localStorage.getItem("plantsTable"))|| []);
+    } ; 
+    return new Promise(executor);//JSON.parse(localStorage.getItem("plantsTable")) || [];
 }
 
 export default { create, read }

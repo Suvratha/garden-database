@@ -1,0 +1,19 @@
+
+const ajaxCall = function (test) {
+    return new Promise((resolve, reject) => {
+        if (test) {
+            resolve("success");
+        }
+        else {
+            reject("failure");
+        }
+    });
+}
+
+const testo = function (test) {
+    ajaxCall(true).then(successMsg => {
+        console.log(successMsg)
+    }).catch(error => {
+        console.log(error);
+    });
+}

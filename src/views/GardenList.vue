@@ -22,15 +22,15 @@ export default {
         { text: "Fertilizer", value: "fertilizer" },
         { text: "Fertilizing Period", value: "fertilizerperiod" },
         { text: "Insecticides", value: "insecticides" },
-        
+
         { text: "Notes", value: "notes" },
       ],
       plants: [],
     };
   },
   created: function () {
-    this.plants = Service.read();
-
+    const promise = Service.read();
+    promise.then((result) => (this.plants = result));
   },
 };
 </script>

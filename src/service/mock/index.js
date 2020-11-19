@@ -14,4 +14,14 @@ const read = function () {
     return new Promise(executor);//JSON.parse(localStorage.getItem("plantsTable")) || [];
 }
 
-export default { create, read }
+const validateUser = function(input){ 
+    console.log("In validateUser method");
+    if(input.username!=null && input.password !=null){
+        if(input.username== "test" && input.password=="test"){
+            return true;
+        }
+    }
+    return false;
+}
+
+export default { create, read, validateUser }

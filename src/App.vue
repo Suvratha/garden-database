@@ -1,9 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-    >
+    <v-navigation-drawer v-model="drawer" v-if="$store.state.loggedIn" app>
       <v-list dense>
         <v-list-item link to="create">
           <v-list-item-action>
@@ -24,11 +21,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      color="indigo"
-      dark
-    >
+    <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Application</v-toolbar-title>
     </v-app-bar>
@@ -36,22 +29,26 @@
     <v-main>
       <router-view />
     </v-main>
-    <v-footer
-      color="indigo"
-      app
-    >
+    <v-footer color="indigo" app>
       <span class="white--text">&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-  export default {
-    props: {
-      source: String,
+export default {
+  props: {
+    source: String,
+  },
+  data: () => ({
+    drawer: null,
+  }),
+  watch: {
+    $route() {
+      if (!this.$store.state.loggedIn) {
+        this.$router.push("/");
+      }
     },
-    data: () => ({
-      drawer: null,
-    }),
-  }
+  },
+};
 </script>

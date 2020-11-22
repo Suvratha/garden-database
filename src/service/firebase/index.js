@@ -40,4 +40,8 @@ const read = function () {
     return new Promise(executor);
 }
 
-export default{create, read}
+const validateUser = function(input){ 
+    return firebase.auth().signInWithEmailAndPassword(input.username, input.password);
+}
+
+export default{create, read, validateUser}

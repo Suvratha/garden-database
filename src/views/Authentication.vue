@@ -29,10 +29,12 @@
         <v-btn type="button" v-on:click="login">Login</v-btn>
       </v-col>
     </v-row>
+    <v-snackbar v-model="snackbar" :bottom="true" color="error"
+      >Login Failed!!</v-snackbar
+    >
   </v-container>
 </template>
 <script>
-
 import Service from "Service";
 
 export default {
@@ -40,16 +42,20 @@ export default {
     return {
       input: {},
       show: false,
+      snackbar: false,
     };
   },
   methods: {
     login: function() {
       const result = Service.validateUser(this.input);
-      if (result == true) {
-        console.log("Successfully logged in");
-      } else {
-        console.log("Login fail");
-      }
+      result
+        .then(() =>{
+          this.$store.commit("setLogIn", result);
+          this.$router.push("/list");
+        })
+        .catch( ()=> {
+          this.snackbar = true;
+        });
     },
   },
 };

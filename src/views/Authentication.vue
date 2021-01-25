@@ -46,17 +46,23 @@ export default {
     };
   },
   methods: {
-    login: function() {
+    login: function () {
       const result = Service.validateUser(this.input);
       result
-        .then(() =>{
+        .then(() => {
           this.$store.commit("setLogIn", result);
           this.$router.push("/list");
         })
-        .catch( ()=> {
+        .catch(() => {
           this.snackbar = true;
         });
     },
+  },
+  mounted() {
+    if (process.env.VUE_APP_DATABASE === "mock") {
+      this.input = { username: "test", password: "test" };
+      this.login();
+    }
   },
 };
 </script>

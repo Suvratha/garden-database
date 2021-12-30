@@ -7,8 +7,21 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-text-field label="Description" v-model="plant.description" outlined shaped />
+        <v-text-field
+          label="Description"
+          v-model="plant.description"
+          outlined
+          shaped
+        />
       </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-date-picker
+        v-model="plant.lastWateredOn"
+        class="mt-4 d-flex mr-auto"
+        min="2016-06-15"
+        max="2100-03-20"
+      ></v-date-picker>
     </v-row>
     <v-row>
       <v-col cols="4">
@@ -78,11 +91,12 @@
         <v-btn @click="$router.go(-1)">Cancel</v-btn>
       </v-col>
     </v-row>
-    <v-snackbar v-model="snackbar" :bottom="true" color="success">Success!!</v-snackbar>
+    <v-snackbar v-model="snackbar" :bottom="true" color="success"
+      >Success!!</v-snackbar
+    >
   </v-container>
 </template>
 <script>
-
 import Service from "Service";
 
 export default {
@@ -121,11 +135,12 @@ export default {
     };
   },
   methods: {
-    submit: function () {
+    submit: function() {
       Service.create(this.plant);
       console.log("Successfully created");
       this.snackbar = true;
       this.plant = {};
+      this.$router.push(`/list`);
     },
   },
 };

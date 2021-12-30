@@ -7,26 +7,6 @@
     show-expand
     @click:row="onClickHandler"
   >
-    <!--<template v-slot:expanded-item="{ headers, item }">
-      <td :colspan="headers.length">
-        <h2>More info about {{ item.name }}:</h2>
-        <v-row>
-          <v-col cols="12"> <b> Description: </b>{{ item.description }} </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="4"> <b> Fertilizer: </b>{{ item.fertilizer }} </v-col>
-          <v-col cols="4">
-            <b> Fertilizer Period: </b>{{ item.fertilizerperiod }}
-          </v-col>
-          <v-col cols="4">
-            <b> Insecticides: </b>{{ item.insecticides }}
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12"> <b> Notes: </b>{{ item.notes }} </v-col>
-        </v-row>
-      </td>
-    </template>-->
   </v-data-table>
 </template>
 

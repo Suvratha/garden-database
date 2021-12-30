@@ -15,6 +15,14 @@
         />
       </v-col>
     </v-row>
+    <v-row justify="center">
+      <v-date-picker
+        v-model="plant.lastWateredOn"
+        class="mt-4 d-flex mr-auto"
+        min="2016-06-15"
+        max="2100-03-20"
+      ></v-date-picker>
+    </v-row>
     <v-row>
       <v-col cols="4">
         <v-select
@@ -80,7 +88,7 @@
         <v-btn v-on:click="update">Update</v-btn>
       </v-col>
       <v-col cols="12" sm="4">
-         <v-btn @click="$router.go(-1)">Cancel</v-btn>
+        <v-btn @click="$router.go(-1)">Cancel</v-btn>
       </v-col>
     </v-row>
     <v-snackbar v-model="snackbar" :bottom="true" color="success"
@@ -132,7 +140,7 @@ export default {
     });
   },
   methods: {
-    update: function () {
+    update: function() {
       Service.update(this.plant);
       console.log("Successfully updated");
       this.snackbar = true;

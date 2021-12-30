@@ -80,7 +80,7 @@
         <v-btn v-on:click="update">Update</v-btn>
       </v-col>
       <v-col cols="12" sm="4">
-        <v-btn>Cancel</v-btn>
+         <v-btn @click="$router.go(-1)">Cancel</v-btn>
       </v-col>
     </v-row>
     <v-snackbar v-model="snackbar" :bottom="true" color="success"

@@ -22,14 +22,20 @@ const create = function (plant) {
     firestore.collection("plants").add(plant);
 };
 
+const update = function(plant) {
+    const copy = {...plant};
+    delete copy['id'];
+    firestore.collection("plants").doc(plant.id).update(copy);
+}
+
 const read = function () {
     var plants = [];
 
     const executor = function (resolve, reject) {
         firestore.collection("plants").get().then((querySnapshot) => {
+            
             querySnapshot.forEach((doc) => {
                 plants.push(doc.data());
-
             });
             resolve(plants);
         }).catch((error)=>{
@@ -44,4 +50,12 @@ const validateUser = function(input){
     return firebase.auth().signInWithEmailAndPassword(input.username, input.password);
 }
 
-export default{create, read, validateUser}
+const findByName = async function(name) {
+    const snapshot = await firestore.collection("plants").where("name", "==", name).limit(1).get();
+    if(!snapshot.empty) {
+        const doc = snapshot.docs[0];
+        return {...doc.data(), id: doc.id};
+    }
+}
+
+export default{create, read, validateUser, findByName, update}

@@ -7,6 +7,18 @@ const create = function(plant) {
   localStorage.setItem("plantsTable", JSON.stringify(values));
 };
 
+const update = function(plant) {
+  var values = JSON.parse(localStorage.getItem("plantsTable"));
+  if (!values) {
+    values = [];
+  }
+  const index = values.findIndex(plantVar => plantVar.name === plant.name);
+
+  values.splice(index, 1, plant);
+
+  localStorage.setItem("plantsTable", JSON.stringify(values));
+};
+
 const read = function() {
   const executor = function(resolve) {
     resolve(JSON.parse(localStorage.getItem("plantsTable")) || []);
@@ -25,4 +37,9 @@ const validateUser = function(input) {
   });
 };
 
-export default { create, read, validateUser };
+const findByName = async function(name) {
+  const table = JSON.parse(localStorage.getItem("plantsTable")) || [];
+  return table.find(plant => name === plant.name);
+}
+
+export default { create, read, validateUser, findByName, update };

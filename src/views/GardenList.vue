@@ -5,8 +5,9 @@
     :items-per-page="10"
     class="elevation-1"
     show-expand
+    @click:row="onClickHandler"
   >
-    <template v-slot:expanded-item="{ headers, item }">
+    <!--<template v-slot:expanded-item="{ headers, item }">
       <td :colspan="headers.length">
         <h2>More info about {{ item.name }}:</h2>
         <v-row>
@@ -24,9 +25,8 @@
         <v-row>
           <v-col cols="12"> <b> Notes: </b>{{ item.notes }} </v-col>
         </v-row>
-        <!-- </v-card> -->
       </td>
-    </template>
+    </template>-->
   </v-data-table>
 </template>
 
@@ -53,6 +53,11 @@ export default {
   created: function() {
     const promise = Service.read();
     promise.then((result) => (this.plants = result));
+  },
+  methods: {
+    onClickHandler: function(item) {
+      this.$router.push(`/details/${item.name}`);
+    },
   },
 };
 </script>

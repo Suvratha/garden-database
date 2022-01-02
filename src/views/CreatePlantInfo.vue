@@ -98,44 +98,23 @@
 </template>
 <script>
 import Service from "Service";
+import { SUNLIGHT, WATER_REQUIREMENT, FERTILIZER, INSECTICIDES, FERTILIZER_PERIOD } from '../utils/constants';
 
 export default {
   name: "CreatePlantInfo",
   data: () => {
     return {
       plant: {},
-      waterrequirement: [
-        "Daily",
-        "Once in two Days",
-        "When surface is dry",
-        "When 1 inch below surface is dry",
-        "Weekly",
-      ],
-      fertilizer: [
-        "Balanced, all purpose, Liquid",
-        "222(NPK)",
-        "242(NPK)",
-        "422(NPK)",
-        "224(NPK)",
-        "442(NPK)",
-        "244(NPK)",
-        "424(NPK)",
-      ],
-      sunlight: [
-        "2 hours",
-        "3 hours",
-        "3-4 hours",
-        "4-5 hours",
-        "5 hours",
-        "8 hours",
-      ],
-      insecticides: ["neem oil"],
-      fertilizerperiod: ["Weekly", "Once in 15 days", "Monthly"],
+      waterrequirement: WATER_REQUIREMENT,
+      fertilizer: FERTILIZER,
+      sunlight: SUNLIGHT,
+      insecticides: INSECTICIDES,
+      fertilizerperiod: FERTILIZER_PERIOD,
       snackbar: false,
     };
   },
   methods: {
-    submit: function() {
+    submit: function () {
       Service.create(this.plant);
       console.log("Successfully created");
       this.snackbar = true;

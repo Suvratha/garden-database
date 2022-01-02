@@ -78,10 +78,22 @@
         />
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-for="(note, i) in plant.notes" :key="i">
       <v-col cols="12">
-        <v-text-field label="Notes" v-model="plant.notes" outlined shaped />
+        <v-text-field label="Notes" v-model="plant.notes[i]" outlined shaped />
       </v-col>
+    </v-row>
+    <v-row>
+      <v-btn
+        class="ma-2"
+        outlined
+        large
+        fab
+        color="primary"
+        @click="onAddHandler"
+      >
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
     </v-row>
     <v-row align="center">
       <v-col cols="12" sm="4">
@@ -99,7 +111,13 @@
 
 <script>
 import Service from "Service";
-import { SUNLIGHT, WATER_REQUIREMENT, FERTILIZER, INSECTICIDES, FERTILIZER_PERIOD } from '../utils/constants';
+import {
+  SUNLIGHT,
+  WATER_REQUIREMENT,
+  FERTILIZER,
+  INSECTICIDES,
+  FERTILIZER_PERIOD,
+} from "../utils/constants";
 export default {
   data: () => {
     return {
@@ -112,18 +130,21 @@ export default {
       snackbar: false,
     };
   },
-  created: function() {
+  created: function () {
     const name = this.$route.params.name;
     Service.findByName(name).then((data) => {
       this.plant = data;
     });
   },
   methods: {
-    update: function() {
+    update: function () {
       Service.update(this.plant);
       console.log("Successfully updated");
       this.snackbar = true;
       this.$router.push(`/details/${this.plant.name}`);
+    },
+    onAddHandler: function () {
+      this.plant.notes.push("");
     },
   },
 };
